@@ -89,8 +89,8 @@ http http://localhost:10000/pinger-service/unprotected/pong
 - Envoy Proxy:
   - [JWT Authentication](https://www.envoyproxy.io/docs/envoy/v1.23.0/configuration/http/http_filters/jwt_authn_filter.html?highlight=local_jwks)
 
-## JWKS:
-[How to generate a JSON Web Key](https://connect2id.com/products/nimbus-jose-jwt/examples/jwk-generation)
+- JWKS:
+  - [How to generate a JSON Web Key](https://connect2id.com/products/nimbus-jose-jwt/examples/jwk-generation)
 
 ## Tools
 
