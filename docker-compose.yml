@@ -1,0 +1,34 @@
+version: '3.8'
+
+networks:
+  my-internal-net:
+    name: my-internal-net
+
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.22-latest
+    ports:
+      - "10000:10000"
+    networks:
+      - my-internal-net
+    volumes:
+      - ./gateway/envoy.yaml:/etc/envoy/envoy.yaml
+    depends_on:
+      - jwks-provider
+      - pinger-service
+  jwks-provider:
+    image: jwks-provider:latest
+    command: /app/run.sh
+    environment:
+      - INTERNAL_PORT=8010
+      - WORKERS=2
+    networks:
+      - my-internal-net
+  pinger-service:
+    image: pinger-service:latest
+    command: /app/run.sh
+    environment:
+      - INTERNAL_PORT=8000
+      - WORKERS=2
+    networks:
+      - my-internal-net
