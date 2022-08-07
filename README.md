@@ -32,7 +32,7 @@ sequenceDiagram
     participant jwks_provider as JWKS Provider
     client->>gateway: GET Protected Resource
         activate gateway
-        gateway->>jwks_provider: GET JWT Keys
+        gateway->>jwks_provider: GET JWT Keys [cached]
         deactivate gateway
         activate jwks_provider
         jwks_provider->>gateway: JWT Keys
