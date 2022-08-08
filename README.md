@@ -68,11 +68,11 @@ docker-compose up
 ### Protected route
 
 ```sh
-http http://localhost:10000/pinger-service/protected Authorization:"Berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s"
+http http://localhost:10000/pinger-service/protected Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s"
 ```
 
 ```sh
-http http://localhost:10000/pinger-service/protected/ping Authorization:"Berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s"
+http http://localhost:10000/pinger-service/protected/ping Authorization:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s"
 ```
 
 ### Unprotected route
