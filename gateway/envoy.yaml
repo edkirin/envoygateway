@@ -38,8 +38,6 @@ static_resources:
                             timeout: 1s
                           cache_duration:
                             seconds: 300
-                        from_headers:
-                        - name: jwt-token
                         forward: true
                         forward_payload_header: x-jwt-payload
                     rules:

@@ -7,9 +7,9 @@
 ```mermaid
 sequenceDiagram
     participant client as Client
-    participant gateway as Envoy Proxy Gateway
-    participant service as Pinger Service
-    participant jwks_provider as JWKS Provider
+    participant gateway as Envoy Proxy Gateway :10000
+    participant service as Pinger Service :8000
+    participant jwks_provider as JWKS Provider :8010
     client->>gateway: GET Unprotected Resource
         activate gateway
         gateway->>service: GET Unprotected
@@ -27,9 +27,9 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant client as Client
-    participant gateway as Envoy Proxy Gateway
-    participant service as Pinger Service
-    participant jwks_provider as JWKS Provider
+    participant gateway as Envoy Proxy Gateway :10000
+    participant service as Pinger Service :8000
+    participant jwks_provider as JWKS Provider :8010
     client->>gateway: GET Protected Resource
         activate gateway
         gateway->>jwks_provider: GET JWT Keys [cached]
@@ -63,14 +63,16 @@ docker-compose up
 
 ## Tests
 
+**Note**: Make yourself a favor and use [httpie](https://httpie.io/cli) instead of curl
+
 ### Protected route
 
 ```sh
-http http://localhost:10000/pinger-service/protected jwt-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s
+http http://localhost:10000/pinger-service/protected Authorization:"Berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s"
 ```
 
 ```sh
-http http://localhost:10000/pinger-service/protected/ping jwt-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s
+http http://localhost:10000/pinger-service/protected/ping Authorization:"Berarer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.b34h75BHF04QKEMBiiKZ1H8vVJMBWv3JybA9LT-GF9s"
 ```
 
 ### Unprotected route
